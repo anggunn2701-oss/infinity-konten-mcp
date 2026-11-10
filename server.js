@@ -48,7 +48,16 @@ if (REMOTE) {
   const dir = process.env.WORKDIR || path.join(os.tmpdir(), 'infinity-site');
   fs.rmSync(dir, { recursive: true, force: true });
   console.log(`Clone ${REPO}#${BRANCH} ...`);
-  execFileSync('git', ['clone', '--depth', '50', '--branch', BRANCH, `https://github.com/${REPO}.git`, dir], { stdio: 'inherit' });
+  try {
+    execFileSync('git', ['clone', '--depth', '50', '--branch', BRANCH, `https://github.com/${REPO}.git`, dir], { stdio: ['ignore', 'inherit', 'pipe'] });
+  } catch (e) {
+    const msg = redact(e.stderr || e.message);
+    console.error(msg);
+    if (/403|not granted|denied|Authentication failed|not found/i.test(msg)) {
+      console.error(`GITHUB_TOKEN ditolak GitHub untuk repo ${REPO}. Periksa token (fine-grained): Resource owner = ${REPO.split('/')[0]}, Repository access berisi ${REPO.split('/')[1]}, Repository permissions > Contents = Read and write, dan token belum kedaluwarsa.`);
+    }
+    process.exit(1);
+  }
   process.env.INFINITY_SITE_ROOT = dir;
 }
 if (!REMOTE) {
