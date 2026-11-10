@@ -52,7 +52,10 @@ if (REMOTE) {
   process.env.INFINITY_SITE_ROOT = dir;
 }
 if (!REMOTE) {
-  if (!process.env.SITE_DIR) { console.error('Mode lokal butuh SITE_DIR (folder website).'); process.exit(1); }
+  if (!process.env.SITE_DIR) {
+    console.error('GITHUB_TOKEN belum diisi. Di Railway tambahkan variabel GITHUB_TOKEN: fine-grained token GitHub dengan akses ke repo ' + REPO + ', permission Contents: Read and write. (SITE_DIR hanya untuk tes lokal tanpa GitHub.)');
+    process.exit(1);
+  }
   process.env.INFINITY_SITE_ROOT = path.resolve(process.env.SITE_DIR);
 }
 const { handleMessage, git } = require(path.join(process.env.INFINITY_SITE_ROOT, 'mcp', 'core.js'));
