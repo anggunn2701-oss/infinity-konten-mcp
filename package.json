@@ -1,0 +1,8 @@
+{
+  "name": "infinity-konten-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MCP remote untuk mengedit isi website Bimbel Infinity dari Grok, Muse, dan bot AI lain.",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=20" }
+}
