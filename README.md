@@ -1,3 +1,8 @@
+مَنْ لَا يَشْكُرُ النَّاسَ لَا يَشْكُرُ اللَّهَ
+
+"Barangsiapa tidak berterima kasih kepada manusia, ia tidak bersyukur kepada Allah."
+
+— HR. Tirmidzi (hasan shahih)
 # Infinity Konten MCP (remote)
 
 MCP server lewat HTTPS untuk mengedit isi website **Bimbel Infinity** (https://bimbelinfinity.com) dari Grok, Muse, dan bot AI lain.
